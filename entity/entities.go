@@ -7,11 +7,9 @@ const (
 )
 
 /*
-Entity này lưu trữ dữ liệu của người tham gia (member , admin , huấn luyện viên )
--Role : phân quyền ai là admin , member , hlv
--Password chỉ những ai là admin mới đc lưu lại => phục vụ mục đích login
+Entity này lưu trữ dữ liệu của acocunt hệ thống
+-Password (hash code) => phục vụ mục đích login
 -IsDeleted là soft-delete check xem có tồn tại hay đã bị xóa
--Note : sẽ lưu thông tin tuy chọn dạng text (cân nặng , ngày bắt đầu kết thúc tập vv .)
 -UpdateAt : lưu lại thời gian lần cập nhật gần nhất
 */
 
@@ -23,7 +21,7 @@ type Person struct {
 	Note      string `json:"note"`
 	Role      string `json:"role"`
 	IsDeleted bool   `json:"isDeleted"`
-	UpdateAt  bool   `json:"updateAt"`
+	UpdateAt  string `json:"updateAt"`
 }
 
 /**

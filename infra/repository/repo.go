@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"github.com/dotuanthanh/api-server/infra/rdb"
+	"api-server/infra/rdb"
 )
 
 var db rdb.IDBHandler

@@ -1,10 +1,10 @@
 package main
 
 import (
+	"api-server/config"
+	"api-server/infra/rdb"
+	"api-server/infra/repository"
 	"fmt"
-	"github.com/dotuanthanh/api-server/config"
-	"github.com/dotuanthanh/api-server/infra/rdb"
-	"github.com/dotuanthanh/api-server/infra/repository"
 	"log"
 	"net/http"
 )
@@ -25,8 +25,52 @@ func handlerRequest(cfgs *config.Server) http.Handler {
 		fmt.Println("Error when init db ...", err.Error())
 	}
 	repository.InitRepo(configDB)
-	http.HandleFunc("/", homePage)
+	http.HandleFunc("/admin", admin)
+	http.HandleFunc("/login", auth)
 	return nil
 }
-func homePage(w http.ResponseWriter, r *http.Request) {
+
+func admin(w http.ResponseWriter, r *http.Request) {
+	//TODO authen
+
+	switch r.Method {
+	case "POST":
+		path := r.URL.RawQuery
+		switch path {
+		case "member-create":
+		case "member-update":
+		case "member-delete":
+		case "employee-create":
+		case "employee-update":
+		case "employee-delete":
+		default:
+		}
+	case "GET":
+		path := r.URL.RawQuery
+		fmt.Println(path)
+		switch path {
+		case "members":
+			w.Write([]byte("s"))
+			w.WriteHeader(http.StatusOK)
+		case "employees":
+		case "overturn":
+		case "salary":
+		}
+	}
+}
+func auth(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case "POST":
+		path := r.URL.RawQuery
+		switch path {
+		case "login":
+
+		case "sigin":
+
+		case "change-password":
+
+		case "forgot-password":
+
+		}
+	}
 }

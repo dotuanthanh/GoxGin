@@ -1,4 +1,4 @@
-module github.com/dotuanthanh/api-server
+module api-server
 
 go 1.17
 

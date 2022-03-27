@@ -1,9 +1,9 @@
 package rdb
 
 import (
+	"api-server/config"
 	"database/sql"
 	"fmt"
-	"github.com/dotuanthanh/api-server/config"
 	_ "github.com/go-sql-driver/mysql"
 )
 
