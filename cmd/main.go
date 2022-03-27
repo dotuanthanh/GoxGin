@@ -1,23 +1,32 @@
-package cmd
+package main
 
 import (
+	"fmt"
+	"github.com/dotuanthanh/api-server/config"
+	"github.com/dotuanthanh/api-server/infra/rdb"
+	"github.com/dotuanthanh/api-server/infra/repository"
 	"log"
 	"net/http"
 )
 
-type server struct {
-	httpContext *http.Client
+func main() {
+	cfgs, err := config.Init()
+	if err != nil {
+		fmt.Println("Server die ....", err.Error())
+		return
+	}
+	fmt.Println("Server start with port 8000")
+	log.Fatalln("Server stop", http.ListenAndServe(":8000", handlerRequest(cfgs)))
 }
 
-func StartServer() {
-
-}
-func handler(s *server) http.Handler {
-	h := s.httpContext
-	h.Get("/")
+func handlerRequest(cfgs *config.Server) http.Handler {
+	configDB, err := rdb.Open(&cfgs.MySql)
+	if err != nil {
+		fmt.Println("Error when init db ...", err.Error())
+	}
+	repository.InitRepo(configDB)
+	http.HandleFunc("/", homePage)
 	return nil
 }
-func main() {
-	s := &server{}
-	log.Fatalln("Server start with port 8000", http.ListenAndServe(":8000", handler(s)))
+func homePage(w http.ResponseWriter, r *http.Request) {
 }

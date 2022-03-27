@@ -2,4 +2,12 @@ module github.com/dotuanthanh/api-server
 
 go 1.17
 
-require golang.org/x/crypto v0.0.0-20220321153916-2c7772ba3064
+require (
+	github.com/go-sql-driver/mysql v1.6.0
+	github.com/jinzhu/configor v1.2.1
+)
+
+require (
+	github.com/BurntSushi/toml v0.3.1 // indirect
+	gopkg.in/yaml.v2 v2.2.2 // indirect
+)

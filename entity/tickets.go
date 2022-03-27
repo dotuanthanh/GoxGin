@@ -12,4 +12,5 @@ type MemberTicket struct {
 	EndDate    int64  `json:"endDate"`
 	MemberName string `json:"memberName"`
 	Phone      string `json:"phone"`
+	Note       string `json:"note"`
 }

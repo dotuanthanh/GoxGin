@@ -4,15 +4,22 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/dotuanthanh/api-server/config"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 type mysql struct {
 	client *sql.DB
 }
 
-func NewMySQL(config *config.MySql) (*mysql, error) {
+func Open(config *config.MySql) (IDBHandler, error) {
 	client := &mysql{}
-
+	err := client.init(config)
+	if err != nil {
+		fmt.Println("error when create instance mysql..", err.Error())
+		defer func(client *mysql) {
+			_ = client.Close()
+		}(client)
+	}
 	return client, nil
 }
 
@@ -31,6 +38,7 @@ func (db *mysql) init(config *config.MySql) error {
 	)
 	client, err := sql.Open(config.DriverName, connectInfo)
 	if err != nil {
+		fmt.Println(err.Error())
 		return err
 	}
 
@@ -44,4 +52,8 @@ func (db *mysql) init(config *config.MySql) error {
 	db.client = client
 
 	return nil
+}
+func (c *mysql) Logger() {
+	//TODO implement me
+	panic("implement me")
 }
