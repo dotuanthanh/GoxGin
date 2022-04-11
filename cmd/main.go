@@ -2,8 +2,8 @@ package main
 
 import (
 	"api-server/config"
-	"api-server/infra/rdb"
-	"api-server/infra/repository"
+	"api-server/internal/rdb"
+	"api-server/internal/repository"
 	"fmt"
 	"log"
 	"net/http"
