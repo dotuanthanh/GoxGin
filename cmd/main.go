@@ -53,8 +53,6 @@ func admin(w http.ResponseWriter, r *http.Request) {
 			w.Write([]byte("s"))
 			w.WriteHeader(http.StatusOK)
 		case "employees":
-		case "overturn":
-		case "salary":
 		}
 	}
 }

@@ -2,6 +2,7 @@ package rdb
 
 import (
 	"api-server/config"
+	"context"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -11,7 +12,7 @@ type mysql struct {
 	client *sql.DB
 }
 
-func Open(config *config.MySql) (IDBHandler, error) {
+func Open(config *config.MySql) (IRDB, error) {
 	client := &mysql{}
 	err := client.init(config)
 	if err != nil {
@@ -53,7 +54,23 @@ func (db *mysql) init(config *config.MySql) error {
 
 	return nil
 }
+
 func (c *mysql) Logger() {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (c *mysql) Insert(sql string) error {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (c *mysql) Query(sql string) *sql.Rows {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (c *mysql) BatchInsert(ctx context.Context, sql string) error {
 	//TODO implement me
 	panic("implement me")
 }

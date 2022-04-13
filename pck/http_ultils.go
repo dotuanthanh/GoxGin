@@ -5,19 +5,20 @@ import (
 	"net/http"
 )
 
-type Response struct {
+type ResponseForm struct {
 	Success bool
 	Message string
 	Data    []interface{}
 }
-type Response2 struct {
+
+type ResponseForm2 struct {
 	Success bool
 	Message string
 	Data    interface{}
 }
 
 func APIResponseMoreData(w http.ResponseWriter, obj []interface{}) {
-	res := Response{
+	res := ResponseForm{
 		Success: false,
 		Data:    obj,
 	}
@@ -30,7 +31,7 @@ func APIResponseMoreData(w http.ResponseWriter, obj []interface{}) {
 
 }
 func APIResponse(w http.ResponseWriter, obj interface{}) {
-	res := Response2{
+	res := ResponseForm2{
 		Success: false,
 		Data:    obj,
 	}
@@ -43,7 +44,7 @@ func APIResponse(w http.ResponseWriter, obj interface{}) {
 }
 func internalServerError(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusInternalServerError)
-	w.Write([]byte("internal server error"))
+	w.Write([]byte("internal api error"))
 }
 
 func NotFound(w http.ResponseWriter, r *http.Request) {

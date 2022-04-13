@@ -5,7 +5,8 @@ import (
 )
 
 type Server struct {
-	MySql MySql
+	MySql    MySql
+	RootUser RootUser
 }
 
 func Init() (*Server, error) {

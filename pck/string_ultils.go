@@ -1,7 +1,6 @@
 package pck
 
 import (
-	"fmt"
 	"strings"
 	"time"
 )
@@ -26,26 +25,6 @@ func ArrayFiler(arr []interface{}, item interface{}) (int, interface{}) {
 		}
 	}
 	return 0, nil
-}
-
-const (
-	CrCode      = "\r"
-	LfCode      = "\n"
-	TabCode     = "\t"
-	EmptyString = ""
-)
-
-func GetString(input interface{}, count int) string {
-	temp := fmt.Sprintf("        %v", input)
-
-	return temp[len(temp)-count:]
-}
-
-func RemoveEndLine(input string) string {
-	temp := strings.ReplaceAll(input, CrCode, EmptyString)
-	temp = strings.ReplaceAll(temp, LfCode, EmptyString)
-
-	return temp
 }
 
 func FormatString(input string, trimSpace bool) string {
