@@ -1,9 +1,16 @@
 package pck
 
-func ComparePassword(hash string, pass string) {
-	//bcrypt.CompareHashAndPassword()
+import "golang.org/x/crypto/bcrypt"
+
+func GenSalt() string {
+	return ""
+}
+func HashPassword(password string) (string, error) {
+	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+	return string(bytes), err
 }
 
-func Decode(password string) {
-
+func CheckPasswordHash(password, hash string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+	return err == nil
 }

@@ -69,6 +69,10 @@ func (c *mysql) Query(sql string) *sql.Rows {
 	//TODO implement me
 	panic("implement me")
 }
+func (c *mysql) Update(sql string) error {
+	//TODO implement me
+	panic("implement me")
+}
 
 func (c *mysql) BatchInsert(ctx context.Context, sql string) error {
 	//TODO implement me

@@ -4,8 +4,18 @@ import (
 	"api-server/internal/rdb"
 )
 
-var db rdb.IRDB
+const (
+	Account_Table        = "Account"
+	Instructor_Table     = "Instructor"
+	MemberTicket_Table   = "MemberTicker"
+	Ticker_Table         = "Ticket"
+	WorkoutBooking_Table = "WorkoutBooking"
+)
+
+var rep rdb.IRDB
 
 func InitRepo(cfg rdb.IRDB) {
-	db = cfg
+	if rep == nil {
+		rep = cfg
+	}
 }
