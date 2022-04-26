@@ -17,6 +17,19 @@ func CheckPasswordHash(password, hash string) bool {
 	return err == nil
 }
 
-func IsUserExisted(email string) {
+func IsUserExisted(email string) int {
 	//sql := sqlbuilder.Select("count(*)").From("Account").Where("email = ?").String()
+	return 0
+}
+
+func LogIn() {
+
+}
+
+func SignIn() {
+
+}
+
+func UpdatePassword() {
+
 }
