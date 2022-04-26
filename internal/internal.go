@@ -3,6 +3,7 @@ package internal
 import (
 	"api-server/config"
 	"api-server/internal/rdb"
+	"api-server/internal/repository"
 	"api-server/internal/thirdparty"
 )
 
@@ -17,6 +18,10 @@ func Init(configs *config.Server) (*Internal, error) {
 	if err != nil {
 		return nil, err
 	}
+	defer func() {
+		repository.InitRepo(db)
+	}()
+
 	return &Internal{
 		rdb: db,
 	}, nil

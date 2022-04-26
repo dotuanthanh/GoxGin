@@ -1,6 +1,8 @@
 package authen
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"golang.org/x/crypto/bcrypt"
+)
 
 func GenSalt() string {
 	return ""
@@ -15,6 +17,6 @@ func CheckPasswordHash(password, hash string) bool {
 	return err == nil
 }
 
-func IsUserExisted() {
-
+func IsUserExisted(email string) {
+	//sql := sqlbuilder.Select("count(*)").From("Account").Where("email = ?").String()
 }

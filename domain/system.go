@@ -1,4 +1,4 @@
-package entity
+package domain
 
 type WorkoutBooking struct {
 	Id          int    `json:"id"`

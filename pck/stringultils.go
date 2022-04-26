@@ -4,13 +4,6 @@ import (
 	"strings"
 )
 
-func IsValidTypeString(str string) bool {
-
-	if strings.Trim(str, "") == "" {
-		return false
-	}
-	return true
-}
 func ArrayFiler(arr []interface{}, item interface{}) (int, interface{}) {
 	if arr == nil {
 		return 0, nil

@@ -1,4 +1,4 @@
-package entity
+package domain
 
 import "api-server/pck/enum"
 
