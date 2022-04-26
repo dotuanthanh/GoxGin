@@ -1,18 +1,24 @@
 package internal
 
 import (
+	"api-server/config"
 	"api-server/internal/rdb"
 	"api-server/internal/thirdparty"
 )
 
-type internal struct {
-	rdb        rdb.IRDB
+type Internal struct {
+	rdb        rdb.IDBHandler
 	thirdParty thirdparty.IThirdParty
 }
 
-func Init() *internal {
+func Init(configs *config.Server) (*Internal, error) {
 	//TODO rdb & third-party
-
-	return &internal{}
+	db, err := rdb.NewMysql(&configs.MySql)
+	if err != nil {
+		return nil, err
+	}
+	return &Internal{
+		rdb: db,
+	}, nil
 
 }

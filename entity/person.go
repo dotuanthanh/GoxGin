@@ -1,11 +1,6 @@
 package entity
 
-const (
-	ADMIN      = "Admin"
-	MEMBER     = "Member"
-	INSTRUCTOR = "Instructor"
-	GUEST      = "Guest"
-)
+import "api-server/pck/enum"
 
 type UserClubInformation struct {
 	UserId     int    `json:"userId"`
@@ -14,7 +9,7 @@ type UserClubInformation struct {
 	Note       string `json:"note"`
 	IsDeleted  bool   `json:"isDeleted"`
 	UpdateAt   string `json:"updateAt"`
-	IsVerified bool   `json:"IsVerified"`
+	IsVerified bool   `json:"isVerified"`
 }
 
 type Account struct {
@@ -28,13 +23,13 @@ type Account struct {
 func CheckValidRoles(person *Account) bool {
 	role := person.Role
 	switch role {
-	case ADMIN:
+	case enum.ADMIN:
 		return true
-	case MEMBER:
+	case enum.MEMBER:
 		return true
-	case INSTRUCTOR:
+	case enum.INSTRUCTOR:
 		return true
-	case GUEST:
+	case enum.GUEST:
 		return true
 	default:
 		return false

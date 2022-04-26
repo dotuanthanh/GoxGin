@@ -2,7 +2,6 @@ package rdb
 
 import (
 	"api-server/config"
-	"context"
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -12,7 +11,7 @@ type mysql struct {
 	client *sql.DB
 }
 
-func Open(config *config.MySql) (IRDB, error) {
+func NewMysql(config *config.MySql) (IDBHandler, error) {
 	client := &mysql{}
 	err := client.init(config)
 	if err != nil {
@@ -22,10 +21,6 @@ func Open(config *config.MySql) (IRDB, error) {
 		}(client)
 	}
 	return client, nil
-}
-
-func (c *mysql) Close() error {
-	return c.client.Close()
 }
 
 func (db *mysql) init(config *config.MySql) error {
@@ -55,26 +50,34 @@ func (db *mysql) init(config *config.MySql) error {
 	return nil
 }
 
-func (c *mysql) Logger() {
-	//TODO implement me
-	panic("implement me")
+//TODO do avoid sql injection
+func (c *mysql) Insert(sql string, args []interface{}) error {
+	exec, err := c.client.Prepare(sql)
+	_, err = exec.Exec(args)
+	if err != nil {
+		return err
+	}
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
-func (c *mysql) Insert(sql string) error {
-	//TODO implement me
-	panic("implement me")
+//TODO do avoid sql injection
+func (c *mysql) Query(sql string, args []interface{}) (*sql.Rows, error) {
+	prepare, err := c.client.Prepare(sql)
+	if err != nil {
+		return nil, err
+	}
+	rows, err := prepare.Query(args)
+	if err != nil {
+		return nil, err
+	}
+	return rows, nil
+
 }
 
-func (c *mysql) Query(sql string) *sql.Rows {
-	//TODO implement me
-	panic("implement me")
-}
-func (c *mysql) Update(sql string) error {
-	//TODO implement me
-	panic("implement me")
-}
-
-func (c *mysql) BatchInsert(ctx context.Context, sql string) error {
-	//TODO implement me
-	panic("implement me")
+func (c *mysql) Close() error {
+	return c.client.Close()
 }

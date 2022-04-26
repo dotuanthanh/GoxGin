@@ -9,7 +9,7 @@ type Ticket struct {
 }
 
 type MemberTicket struct {
-	Id        int    `json:"Id"`
+	Id        int    `json:"id"`
 	UserId    int    `json:"userId"`
 	StartDate string `json:"startDate"`
 	EndDate   string `json:"endDate"`

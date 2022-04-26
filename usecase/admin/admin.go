@@ -1,4 +1,4 @@
-package repository
+package admin
 
 func isExisted(phone string) bool {
 	//sql := sqlbuilder.Select("count(*)").From(Account_Table)

@@ -1,9 +1,6 @@
-package repository
+package enum
 
-import (
-	"api-server/internal/rdb"
-)
-
+//table to use
 const (
 	Account_Table        = "Account"
 	Instructor_Table     = "Instructor"
@@ -12,10 +9,10 @@ const (
 	WorkoutBooking_Table = "WorkoutBooking"
 )
 
-var rep rdb.IRDB
-
-func InitRepo(cfg rdb.IRDB) {
-	if rep == nil {
-		rep = cfg
-	}
-}
+//define roles
+const (
+	ADMIN      = "Admin"
+	MEMBER     = "Member"
+	INSTRUCTOR = "Instructor"
+	GUEST      = "Guest"
+)

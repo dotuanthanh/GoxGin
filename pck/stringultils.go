@@ -2,12 +2,8 @@ package pck
 
 import (
 	"strings"
-	"time"
 )
 
-func GetTimeStamp() int64 {
-	return time.Now().Unix()
-}
 func IsValidTypeString(str string) bool {
 
 	if strings.Trim(str, "") == "" {

@@ -75,3 +75,6 @@ func FormatDate(num string, layout string) time.Time {
 	}
 	return parse
 }
+func GetTimeStamp() int64 {
+	return time.Now().Unix()
+}

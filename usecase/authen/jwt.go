@@ -1,4 +1,4 @@
-package pck
+package authen
 
 import "golang.org/x/crypto/bcrypt"
 
@@ -13,4 +13,8 @@ func HashPassword(password string) (string, error) {
 func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
+}
+
+func IsUserExisted() {
+
 }
