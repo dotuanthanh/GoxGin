@@ -4,11 +4,11 @@ import (
 	"api-server/internal/rdb"
 )
 
-var dbRepo IDBRepository
+var DBRepository IDBRepository
 
 func InitRepo(rdb rdb.IDBHandler) {
-	if dbRepo == nil {
-		dbRepo = rdb
+	if DBRepository == nil {
+		DBRepository = rdb
 	}
 }
 
