@@ -7,6 +7,7 @@ import (
 type Server struct {
 	MySql    MySql
 	RootUser RootUser
+	Redis    Redis
 }
 
 func InitConfiguration() (*Server, error) {

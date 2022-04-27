@@ -53,7 +53,7 @@ func NotFound(w http.ResponseWriter, r *http.Request) {
 }
 func ParamsInvalid(w http.ResponseWriter, r *http.Request, params string) {
 
-	w.Write([]byte("Truyền thiếu params : ..."))
+	w.Write([]byte("invalid params : ..."))
 }
 func Authenticated(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusForbidden)
