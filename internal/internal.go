@@ -2,19 +2,19 @@ package internal
 
 import (
 	"api-server/config"
-	"api-server/internal/rdb"
+	rdb2 "api-server/internal/db/rdb"
 	"api-server/internal/repository"
-	"api-server/internal/thirdparty"
+	"api-server/internal/thirdparty/google"
 )
 
 type Internal struct {
-	rdb        rdb.IDBHandler
-	thirdParty thirdparty.IThirdParty
+	rdb        rdb2.IDBHandler
+	thirdParty google.IThirdParty
 }
 
 func Init(configs *config.Server) (*Internal, error) {
 	//TODO rdb & third-party
-	db, err := rdb.NewMysql(&configs.MySql)
+	db, err := rdb2.NewMysql(&configs.MySql)
 	if err != nil {
 		return nil, err
 	}

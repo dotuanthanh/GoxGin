@@ -1,4 +1,4 @@
-package thirdparty
+package google
 
 type IThirdParty interface {
 }

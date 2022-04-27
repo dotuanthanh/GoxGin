@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"api-server/internal/rdb"
+	"api-server/internal/db/rdb"
 )
 
 var DBRepository IDBRepository

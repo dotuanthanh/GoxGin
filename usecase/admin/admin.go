@@ -18,6 +18,7 @@ func UpdateAccount(phone string, password string, note string) error {
 func CheckLogin(phone string, password string) {
 
 }
+
 func ChangePassword() {
 
 }

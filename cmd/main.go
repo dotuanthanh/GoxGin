@@ -1,25 +1,32 @@
 package main
 
 import (
-	gin "github.com/gin-gonic/gin"
+	"api-server/api/server"
+	"api-server/config"
+	"api-server/internal"
+	"github.com/gin-gonic/gin"
+	"log"
 )
 
 func main() {
-	// logger and recovery (crash-free) middleware
-	router := gin.Default()
-	//
-	//router.GET("/someGet", getting)
-	//router.POST("/somePost", posting)
-	//router.PUT("/somePut", putting)
-	//router.DELETE("/someDelete", deleting)
-	//router.PATCH("/somePatch", patching)
-	//router.HEAD("/someHead", head)
-	//router.OPTIONS("/someOptions", options)
-
-	// By default it serves on :8080 unless a
-	// PORT environment variable was defined.
-	err := router.Run()
+	keepMainThread := make(chan struct{})
+	configs, err := config.InitConfiguration()
 	if err != nil {
-		return
+		log.Println("InitConfiguration config fail  ", err.Error())
+		close(keepMainThread)
 	}
+	inter, err := internal.Init(configs)
+	if err != nil {
+		log.Println("InitConfiguration internal fail  ", err.Error())
+		close(keepMainThread)
+	}
+	//Framework adapter
+	engine := gin.Default()
+
+	appServer := server.NewServer(inter, configs, engine)
+	go func() {
+		appServer.Start()
+	}()
+
+	<-keepMainThread
 }

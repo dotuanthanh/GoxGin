@@ -9,7 +9,7 @@ type Server struct {
 	RootUser RootUser
 }
 
-func Init() (*Server, error) {
+func InitConfiguration() (*Server, error) {
 	cfg := new(Server)
 	if err := configor.Load(cfg); err != nil {
 		return nil, err
