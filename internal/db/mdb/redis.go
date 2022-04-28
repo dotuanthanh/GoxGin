@@ -18,7 +18,6 @@ func NewRedis(config *config.Redis) (IRedisHandler, error) {
 		Password: config.Password,
 		DB:       config.DB,
 	})
-
 	pong, err := client.Ping().Result()
 	fmt.Println("Ping redis..... ", pong)
 	if err != nil {

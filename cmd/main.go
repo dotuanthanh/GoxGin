@@ -12,12 +12,12 @@ func main() {
 	keepMainThread := make(chan struct{})
 	configs, err := config.InitConfiguration()
 	if err != nil {
-		log.Println("InitConfiguration config fail  ", err.Error())
+		log.Println("Init config fail  ", err.Error())
 		close(keepMainThread)
 	}
 	inter, err := internal.Init(configs)
 	if err != nil {
-		log.Println("InitConfiguration internal fail  ", err.Error())
+		log.Println("Init internal fail  ", err.Error())
 		close(keepMainThread)
 	}
 	//Framework adapter
@@ -25,7 +25,11 @@ func main() {
 
 	appServer := server.NewServer(inter, configs, engine)
 	go func() {
-		appServer.Start()
+		err := appServer.Start()
+		if err != nil {
+			log.Println("Server start error ....", err.Error())
+			close(keepMainThread)
+		}
 	}()
 
 	<-keepMainThread

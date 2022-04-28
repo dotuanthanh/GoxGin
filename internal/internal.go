@@ -27,3 +27,7 @@ func Init(configs *config.Server) (*Internal, error) {
 	}, nil
 
 }
+func (i *Internal) Stop() error {
+	err := i.rdb.Close()
+	return err
+}
