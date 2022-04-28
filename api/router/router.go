@@ -15,8 +15,8 @@ func NewRouter(engine *gin.Engine) *router {
 	}
 }
 func (r *router) RouterHandler() error {
-	r.engine.POST("/sign-up", admin.SignUp)
-	r.engine.POST("/log-in", admin.Login)
+	r.engine.POST("/signup", admin.SignUpHandler)
+	r.engine.POST("/login", admin.LoginHandler)
 
 	return nil
 }

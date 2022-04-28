@@ -15,8 +15,12 @@ func UpdateAccount(phone string, password string, note string) error {
 	return nil
 }
 
-func CheckLogin(phone string, password string) {
-
+func CheckLogin(email string, password string) *LoginResponse {
+	//TODO
+	return &LoginResponse{
+		Email: email,
+		Token: "token",
+	}
 }
 
 func ChangePassword() {

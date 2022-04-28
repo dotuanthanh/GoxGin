@@ -1,8 +1,8 @@
 package domain
 
 type WorkoutBooking struct {
-	Id          int    `json:"id"`
-	UserId      int    `json:"userId"`
-	BookingTime string `json:"bookingTime"`
-	Status      bool   `json:"status"`
+	Id          int
+	UserId      int
+	BookingTime string
+	Status      bool
 }
